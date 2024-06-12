@@ -4,8 +4,16 @@ const SimpleInput=(props)=>{
     const [userInput,setUserInput]=useState("");
     //const[inputIsValid,setInputIsValid]=useState(false);
     const[inputTouched,setInputTouched]=useState(false);
+    const[formIsValid,setFormIsValid]=useState(false);
     const inputIsValid=userInput.trim().length!==0;
     const inputIsInValid=!inputIsValid && inputTouched;
+    useEffect(()=>{
+        if(inputIsValid){
+            setFormIsValid(true);
+        }else{
+            setFormIsValid(false);
+        }
+    },[inputIsValid])
     //const userInputRef=useRef("");
    /*  useEffect(()=>{
         if(inputIsValid){
@@ -55,7 +63,7 @@ const SimpleInput=(props)=>{
                 {inputIsInValid && <p className="error-text">*User name is required</p>}
             </div>
             <div className="form-action">
-                <button type="submit">Submit</button>
+                <button type="submit" disabled={!formIsValid} >Submit</button>
 
             </div>
         </form>
