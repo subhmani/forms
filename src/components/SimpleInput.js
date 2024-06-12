@@ -14,6 +14,15 @@ const SimpleInput=(props)=>{
         setUserInput(event.target.value);
         console.log("User Input change handler",event.target.value);
     }
+    const onBlurHandler=(event)=>{
+        setInputTouched(true);
+        if(event.target.value.trim().length===0){
+            setInputIsValid(false);
+        }
+        else{
+            setInputIsValid(true);
+        }
+    }
     const submitHandler=(event)=>{
         event.preventDefault();
         setInputTouched(true);
@@ -31,7 +40,9 @@ const SimpleInput=(props)=>{
         <form onSubmit={submitHandler}>
             <div className={controlClass}>
                 <label>User Name</label>
-                <input value={userInput} ref={userInputRef} className="form-input" onChange={changeHandler} type="text" id="username"/>
+                <input value={userInput} ref={userInputRef} className="form-input" 
+                onChange={changeHandler} onBlur={onBlurHandler} 
+                type="text" id="username"/>
                 {!inputIsValid && inputTouched && <p className="error-text">*User name is required</p>}
             </div>
             <div className="form-action">
