@@ -72,18 +72,18 @@ const SimpleInput=(props)=>{
     return(
         <form onSubmit={submitHandler}>
             <div className={controlClass}>
-                <label>User Name</label>
+                <label>User Name:</label>
                 <input value={nameInput} className="form-input" 
                 onChange={changeHandler} onBlur={onBlurHandler} 
                 type="text" id="username"/>
-                {inputIsInValid && <p className="error-text">*User name is required</p>}
+                {inputIsInValid && <p className="error-text">*User name is required.</p>}
             </div>
             <div className={emailControlClass}>
-                <label>Email</label>
+                <label>Email:</label>
                 <input value={emailInput} className="form-input" 
                 onChange={emailChangeHandler} onBlur={onEmailBlurHandler} 
                 type="text" id="username"/>
-                {emailIsInValid && <p className="error-text">*Please enter valid email</p>}
+                {emailIsInValid && <p className="error-text">*Please enter valid email.</p>}
             </div>
             <div className="form-action">
                 <button type="submit" disabled={!formIsValid} >Submit</button>
