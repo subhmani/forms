@@ -1,23 +1,25 @@
 import { type } from "@testing-library/user-event/dist/type";
 import { useSelector,useDispatch } from "react-redux";
 const Votes=()=>{
-    const votes = useSelector(state=>state.votes)
+    const initialState={votes:0,toggle:true}
+    const votes = useSelector((state=initialState)=>state.votes)
+    const showVotes=useSelector((state=initialState)=>state.toggle)
     const dispatch=useDispatch();
     const incrementHandler=()=>{
-        dispatch({type:"Increment",value:10})
+        dispatch({type:"Increment"})
     }
     const decrementHandler=()=>{
         dispatch({type:"Decrement"})
     }
     const addBy10Handler=()=>{
-        dispatch({type:'Increase',value:10})
+        dispatch({type:'Increase',payload:10})
     }
     const toggleVotesHandler=()=>{}
-
+        dispatch({type:'Toggle'})
     return (
         <div className="votes">
             <h1>Redux Votes</h1>
-            <div className="value"> Number of votes</div>
+            {showVotes && <div className="value">{votes}</div>}
             <button onClick={incrementHandler}>Increment</button>
             <button onClick={decrementHandler}>Decrement</button>
             <button onClick={addBy10Handler}>Add 10 votes</button>
