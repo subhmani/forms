@@ -1,5 +1,6 @@
 import { createStore } from  'redux';
 import { createSlice,configureStore } from '@reduxjs/toolkit';
+
 const initialState={votes:0,toggle:true}
 /* const reducerFunction=(state=initialState,action)=>{
     if(action.type==="Increment"){
@@ -18,12 +19,13 @@ const initialState={votes:0,toggle:true}
 reducer={
     Increment:(state)=>state.votes++,
     Decrement:(state)=>state.votes--,
-    Increase:(state)=>state.votes,
+    Increase:(state,action)=>state.votes=state.votes+action.payload,
     Toggle:(state)=>!state.toggle
 }
 const voteSlice = createSlice("votes", initialState, reducer)
 const voteStore=configureStore({reducer:{votes:voteSlice.reducer}})
+const actions = voteSlice.actions
 //const voteStore = createStore(voteSlice.reducer)
 //const voteStore=createStore(reducerFunction);
-
+export const action = voteSlice.actions
 export default voteStore;
